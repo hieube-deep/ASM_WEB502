@@ -1,9 +1,11 @@
-function EditPage() {
+import React from 'react'
+
+function Edit() {
   return (
     <div>
-      <h1>Cập nhật</h1>
+      <h1>edit</h1>
     </div>
-  );
+  )
 }
 
-export default EditPage;
+export default Edit
