@@ -24,6 +24,7 @@
     "react-hot-toast": "^2.5.1",
     "react-router-dom": "^7.9.6",
     "tailwindcss": "^4.1.17",
+    "toast": "^0.5.4",
     "zod": "^4.1.12"
   },
   "devDependencies": {
