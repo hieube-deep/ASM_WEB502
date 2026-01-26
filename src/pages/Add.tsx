@@ -1,171 +1,129 @@
-import React from 'react'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import { toast } from 'react-hot-toast';
-type valueForm = {
-  name: string,
-  price: number,
-  rate: "high" | "middle" | "low",
-  sale: boolean,
-  category: string,
-  image: string
-}
+import React from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+
+type CourseForm = {
+  name: string;
+  credit: number;
+  category: "Cơ sở" | "Chuyên ngành" | "Tự chọn";
+  teacher: string;
+};
+
 function Add() {
-  const nav = useNavigate();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<valueForm>();
+  } = useForm<CourseForm>();
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: CourseForm) => {
     try {
-      await axios.post("http://localhost:3000/products", data);
-      toast.success('thêm sản phẩm thành công');
-      nav("/list");
+      await axios.post("http://localhost:3000/courses", data);
+      toast.success("Thêm khóa học thành công");
+      navigate("/list");
     } catch (error) {
       console.log(error);
     }
-  }
+  };
+
   return (
     <>
-      <form className="card shadow-lg border-0 p-4 p-md-5" onSubmit={handleSubmit(onSubmit)}>
-        <h4 className="mb-4 fw-semibold"> Thêm sản phẩm</h4>
+      <form
+        className="card shadow-lg border-0 p-4 p-md-5"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <h4 className="mb-4 fw-semibold">Thêm khóa học</h4>
 
-        <div className="row g-3 mb-3">
-          <div className="col-md-6">
-            <label className="form-label fw-medium">Tên sản phẩm</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Ví dụ: Áo thun nam"
-              {...register("name", {
-                required: "Tên sản phẩm không được để trống",
-                minLength: {
-                  value: 3,
-                  message: "tên sản phẩm phải có nhiều hơn 3 ký tự "
-                },
-                maxLength: {
-                  value: 20,
-                  message: "tên sản phẩm phải có ít hơn 20 ký tự "
-                }
-              })}
-            />
-            {errors.name && <span className='text-danger'>{errors.name.message}</span>}
-          </div>
-
-          <div className="col-md-6">
-            <label className="form-label fw-medium">Giá sản phẩm</label>
-            <div className="input-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="0"
-                {...register("price", {
-                  required: "Giá sản phẩm không được để trống",
-                  min: {
-                    value: 1,
-                    message: "Giá phải lớn hơn 0"
-                  },
-                  valueAsNumber: true,
-                  validate: (value) => !isNaN(value) || "nhập giá không hợp lệ"
-                })}
-              />
-              <span className="input-group-text">₫</span>
-
-            </div>
-            {errors.price && <span className='text-danger'>{errors.price.message}</span>}
-          </div>
-        </div>
-
+        {/* Tên khóa học */}
         <div className="mb-3">
-          <label className="form-label fw-medium">Ảnh sản phẩm</label>
-          <input type="file" className="form-control"
-            {...register("image", { required: true })}
+          <label className="form-label fw-medium">Tên khóa học</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Ví dụ: ReactJS Cơ Bản"
+            {...register("name", {
+              required: "Tên khóa học không được để trống",
+              minLength: {
+                value: 3,
+                message: "Tên khóa học phải lớn hơn 3 ký tự"
+              }
+            })}
           />
-          <small className="text-muted">Chấp nhận JPG, PNG</small>
+          {errors.name && (
+            <span className="text-danger">{errors.name.message}</span>
+          )}
         </div>
 
+        {/* Số tín chỉ */}
         <div className="mb-3">
-          <label className="form-label fw-medium">Đánh giá (Rate)</label>
-
-          <div className="d-flex gap-4 mt-1">
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="radio"
-                value="high"
-                {...register("rate", { required: true })}
-              />
-              <label className="form-check-label">
-                High
-              </label>
-            </div>
-
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="radio"
-                value="middle"
-                {...register("rate")}
-              />
-              <label className="form-check-label">
-                Middle
-              </label>
-            </div>
-
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="radio"
-                value="low"
-                {...register("rate")}
-              />
-              <label className="form-check-label">
-                Low
-              </label>
-            </div>
-          </div>
+          <label className="form-label fw-medium">Số tín chỉ</label>
+          <input
+            type="number"
+            className="form-control"
+            placeholder="Ví dụ: 3"
+            {...register("credit", {
+              required: "Số tín chỉ không được để trống",
+              min: {
+                value: 1,
+                message: "Số tín chỉ phải lớn hơn 0"
+              },
+              valueAsNumber: true
+            })}
+          />
+          {errors.credit && (
+            <span className="text-danger">{errors.credit.message}</span>
+          )}
         </div>
 
-
-        <div className="row g-3 mb-4">
-          <div className="col-md-6">
-            <label className="form-label fw-medium">Trạng thái</label>
-            <select
-              className="form-select"
-              {...register("sale", {
-                setValueAs: (v) => v === "true"
-              })}
-            >
-              <option value="">-- Chọn trạng thái --</option>
-              <option value="true">còn hành</option>
-              <option value="false">hết hành</option>
-            </select>
-          </div>
-
-          <div className="col-md-6">
-            <label className="form-label fw-medium">Danh mục</label>
-            <select className="form-select"
-              {...register("category", { required: true })}
-            >
-              <option value="">-- Chọn danh mục --</option>
-              <option value="Thời trang">Thời trang</option>
-              <option value="Giày dép">Giày dép</option>
-            </select>
-          </div>
+        {/* Danh mục */}
+        <div className="mb-3">
+          <label className="form-label fw-medium">Danh mục</label>
+          <select
+            className="form-select"
+            {...register("category", { required: "Vui lòng chọn danh mục" })}
+          >
+            <option value="">-- Chọn danh mục --</option>
+            <option value="Cơ sở">Cơ sở</option>
+            <option value="Chuyên ngành">Chuyên ngành</option>
+            <option value="Tự chọn">Tự chọn</option>
+          </select>
+          {errors.category && (
+            <span className="text-danger">{errors.category.message}</span>
+          )}
         </div>
 
-        <div className="d-flex justify-content-end gap-2">
+        {/* Giảng viên */}
+        <div className="mb-4">
+          <label className="form-label fw-medium">Giảng viên</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Ví dụ: Nguyễn Văn A"
+            {...register("teacher", {
+              required: "Tên giảng viên không được để trống",
+              minLength: {
+                value: 3,
+                message: "Tên giảng viên phải lớn hơn 3 ký tự"
+              }
+            })}
+          />
+          {errors.teacher && (
+            <span className="text-danger">{errors.teacher.message}</span>
+          )}
+        </div>
+
+        <div className="d-flex justify-content-end">
           <button type="submit" className="btn btn-primary px-4">
-            Lưu sản phẩm
+            Lưu khóa học
           </button>
         </div>
       </form>
-
     </>
-  )
+  );
 }
 
-export default Add
+export default Add;
