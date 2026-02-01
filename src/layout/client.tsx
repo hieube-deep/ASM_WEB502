@@ -11,14 +11,14 @@ function Client() {
             <strong>WEB502 App</strong>
           </Link>
 
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+          <div className="d-flex gap-2">
+            <Link to="/auth/login" className="btn btn-light">
+              Đăng nhập
+            </Link>
+            <Link to="/auth/register" className="btn btn-light">
+              Đăng ký
+            </Link>
+          </div>
         </div>
       </nav>
 
