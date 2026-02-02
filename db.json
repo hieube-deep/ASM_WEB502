@@ -28,23 +28,6 @@
       "name": "Nguyễn Văn A",
       "email": "a@gmail.com",
       "role": "admin"
-    },
-    {
-      "email": "123@gmail.com",
-      "password": "$2a$10$Y6XY3FqJpyJe/Mk/Jz6uuuZRxvweh8UsMdZZFrj4vYcBtjpmcd.si",
-      "id": 2
-    },
-    {
-      "email": "hieu110326@gmail.com",
-      "password": "$2a$10$j/Uv2krBL/19B1ckcTnyROAzZ1fBiECjp7/Nq3aPxWj/MZWOELgG.",
-      "username": "hieu110326@gmail.com",
-      "id": 3
-    },
-    {
-      "email": "admin@gmail.com",
-      "password": "$2a$10$FJ6laSs0naE.o5QFXfVuVe00Qw65vUB0cNaa.KM9lHSwarWd/S6aC",
-      "username": "admin",
-      "id": 4
     }
   ]
 }
