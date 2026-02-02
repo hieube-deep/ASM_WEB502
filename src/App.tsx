@@ -43,8 +43,8 @@ function App() {
               <Route path="/add" element={<Add />} />
             </Route>
 
-            <Route path='/register' element={<AuthPage />} />
-            <Route path="/login" element={<AuthPage />} />
+            <Route path='/register' element={<AuthPage isLogin={false} />} />
+            <Route path="/login" element={<AuthPage isLogin={true} />} />
           </Routes>
         </div>
         <Toaster />

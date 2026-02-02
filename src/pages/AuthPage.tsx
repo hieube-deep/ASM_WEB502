@@ -39,9 +39,8 @@ function AuthPage({ isLogin }: Props) {
                 await axios.post("http://localhost:3000/register", values);
                 toast.success("Đăng ký thành công");
                 setTimeout(() => {
-                    nav("/")
-                }, 500)
-                nav("/login");
+                    nav("/login")
+                }, 500);
             }
         } catch (error: any) {
             console.error("Error details:", error.response?.data);
