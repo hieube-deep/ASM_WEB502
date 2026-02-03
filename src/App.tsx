@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import List from "./pages/List";
 import Edit from "./pages/Edit";
 import Add from "./pages/Add";
@@ -6,7 +6,19 @@ import AuthPage from "./pages/AuthPage";
 import toast, { Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import ProtectRoute from "./componets/ProtectRoute";
+
 function App() {
+  const navigate = useNavigate();
+
+  const isLoggedIn = !!localStorage.getItem("token");
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    toast.success("Đăng xuất thành công!");
+    navigate("/login");
+  };
 
   return (
     <>
@@ -19,12 +31,20 @@ function App() {
             </Link>
 
             <div className="d-flex gap-2">
-              <Link to="/login" className="btn btn-light">
-                Đăng nhập
-              </Link>
-              <Link to="/register" className="btn btn-light">
-                Đăng ký
-              </Link>
+              {isLoggedIn ? (
+                <button onClick={handleLogout} className="btn btn-light">
+                  Đăng xuất
+                </button>
+              ) : (
+                <>
+                  <Link to="/login" className="btn btn-light">
+                    Đăng nhập
+                  </Link>
+                  <Link to="/register" className="btn btn-light">
+                    Đăng ký
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </nav>
@@ -35,10 +55,9 @@ function App() {
             Chào mừng đến với WEB502
           </h1>
           <Routes>
-
             <Route path="/" element={<List />} />
 
-            <Route element={<ProtectRoute></ProtectRoute>}>
+            <Route element={<ProtectRoute />}>
               <Route path="/edit/:id" element={<Edit />} />
               <Route path="/add" element={<Add />} />
             </Route>

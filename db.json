@@ -28,47 +28,6 @@
       "name": "Nguyễn Văn A",
       "email": "a@gmail.com",
       "role": "admin"
-    },
-    {
-      "email": "123@gmail.com",
-      "password": "$2a$10$Y6XY3FqJpyJe/Mk/Jz6uuuZRxvweh8UsMdZZFrj4vYcBtjpmcd.si",
-      "id": 2
-    },
-    {
-      "email": "hieu110326@gmail.com",
-      "password": "$2a$10$j/Uv2krBL/19B1ckcTnyROAzZ1fBiECjp7/Nq3aPxWj/MZWOELgG.",
-      "username": "hieu110326@gmail.com",
-      "id": 3
-    },
-    {
-      "email": "admin@gmail.com",
-      "password": "$2a$10$FJ6laSs0naE.o5QFXfVuVe00Qw65vUB0cNaa.KM9lHSwarWd/S6aC",
-      "username": "admin",
-      "id": 4
-    },
-    {
-      "email": "hahaha@gmail.com",
-      "password": "$2a$10$ZEr.uaoqd.e3PsYtWNrA9uwqg6.RHBjdS/SJXhFTuO7N0AsXZyxH.",
-      "username": "1234",
-      "id": 5
-    },
-    {
-      "email": "linh250126@gmail.com",
-      "password": "$2a$10$A9PD6sz.Hp93ts0y2hkqE.63SiY1Rvn7JYbj.r61LgOnY8KBqt48a",
-      "username": "hieunt",
-      "id": 6
-    },
-    {
-      "email": "hah@gmail.com",
-      "password": "$2a$10$IXlq6Pdd8h8hmo/wW1AqYOEEOG53U8jmJbOToopiOgMRxCtLohcry",
-      "username": "admin",
-      "id": 7
-    },
-    {
-      "email": "qqq@gmail.com",
-      "password": "$2a$10$SSfiFR0opuje1m8VQwp5i./vUl/7Y92KNJSFe0gbpv7Zv6HtbV/Au",
-      "username": "hieunt",
-      "id": 8
     }
   ]
 }
